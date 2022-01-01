@@ -1,12 +1,16 @@
 package com.example.timeseriesproject.models;
 
+import com.example.timeseriesproject.security.service.UserDetailsImpl;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 import javax.persistence.*;
-
+import javax.servlet.http.HttpServletRequest;
+import java.security.Principal;
 
 
 @Entity
@@ -20,18 +24,20 @@ public class Series {
     private Long id;
     private String titre;
     private String description;
-    /*
+
+
+
     @OneToOne(cascade = {CascadeType.ALL})
     @JoinTable(	name = "user_series",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "series_id"))
+            joinColumns = @JoinColumn(name = "serie_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id"))
     private User user = new User();
     @OneToOne(cascade = {CascadeType.ALL})
     @JoinTable(	name = "series_details",
             joinColumns = @JoinColumn(name = "series_id"),
             inverseJoinColumns = @JoinColumn(name = "datails_id"))
-    private Details d = new Details();
-    */
+    private Details d;
+
 
 
 }
