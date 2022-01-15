@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@RequestMapping("/api/series/user")
 public class DetailsController {
     @Autowired
     DetailsRepository detailsRepository;
@@ -19,7 +20,7 @@ public class DetailsController {
     }
     @GetMapping("/details/{id}")
     public Details getDetailsById(@PathVariable Long id){
-        return detailsRepository.findById(id).orElseThrow(); // voyons voir si cv marcher
+        return detailsRepository.findById(id).get();
     }
     @PostMapping("/details")
     public Details addDetails(@RequestBody Details d){
@@ -27,10 +28,11 @@ public class DetailsController {
     }
     @PutMapping("/details/{id}")
     public Details editDetails(@RequestBody Details d, @PathVariable Long id){
-        Details details = detailsRepository.findById(id).orElseThrow(); //de m
+        Details details = detailsRepository.findById(id).get();
         details.setValeur(d.getValeur());
         details.setDate(d.getDate());
         details.setCommentaire(d.getCommentaire());
+        details.setTag(d.getTag());
         return detailsRepository.save(details);
     }
     @DeleteMapping("/details/{id}")

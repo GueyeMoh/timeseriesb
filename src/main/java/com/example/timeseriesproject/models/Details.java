@@ -25,4 +25,5 @@ public class Details {
     private int valeur;
     private String description;
     private String commentaire;
+    private String tag;
 }

@@ -11,6 +11,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import javax.persistence.*;
 import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
+import java.util.List;
 
 
 @Entity
@@ -31,12 +32,12 @@ public class Series {
     @JoinTable(	name = "user_series",
             joinColumns = @JoinColumn(name = "serie_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id"))
-    private User user = new User();
-    @OneToOne(cascade = {CascadeType.ALL})
+    private User user;
+    @OneToMany(cascade = {CascadeType.ALL})
     @JoinTable(	name = "series_details",
             joinColumns = @JoinColumn(name = "series_id"),
             inverseJoinColumns = @JoinColumn(name = "datails_id"))
-    private Details d;
+    private List<Details> d;
 
 
 
